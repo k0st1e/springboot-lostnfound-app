@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerts</title>
+    <link th:href="@{/css/stylesheet.css}" rel="stylesheet"/>
+    <link th:href="@{/images/search-rel.png}" rel="icon">
+</head>
+
+<body>
+    <header>
+        <nav id="top">
+            <ul class="nav-flex-container">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/choose">Submit Item</a></li>
+                <li><a href="/dash">Dash Analytics</a></li>
+                <!-- @ModelAttribute("hasUnreadAlerts") from `GlobalAlertDevice` :) -->
+                <li th:classappend="${hasUnreadAlerts} ? ' ugotmail' : '' "><a href="/alerts">Alerts</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-layout">
+
+        <div class="item-card">
+            <h1>Alerts Board</h1>
+
+            <div th:each="alert : ${alerts}">
+                <p class="incoming-message" th:text="${alert.alertMessage}"></p>
+            </div>
+
+            <br>
+
+            <form method="post" th:action="@{/do-flip-alerts}">
+                <input type="submit" name="flip" class="submit-button-item" value="Mark all alerts as read!">
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>Konstantinos Giasemis, 2026.</p>
+    </footer>
+
+</body>
+
+</html>

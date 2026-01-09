@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dash Analytics</title>
+    <link th:href="@{/css/stylesheet.css}" rel="stylesheet"/>
+    <link th:href="@{/images/search-rel.png}" rel="icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+<header>
+    <nav id="top">
+        <ul class="nav-flex-container">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/choose">Submit Item</a></li>
+            <li class="active_page"><a href="/dash">Dash Analytics</a></li>
+            <!-- @ModelAttribute("hasUnreadAlerts") from `GlobalAlertDevice` :) -->
+            <li th:classappend="${hasUnreadAlerts} ? ' ugotmail' : ''"><a href="/alerts">Alerts</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="home-content">
+    <h1>Items in a Donut</h1>
+
+    <div class="donut-container">
+        <canvas id="donut" height="600" width="600"></canvas>
+    </div>
+
+    <script th:inline="javascript">
+        <!-- I really don't like JS. That's it. Thanks for reading. -->
+        const itemLabels = [[${items.![categoryName]}]];
+        const itemValues = [[${items.![numOfItems]}]];
+
+        const itemData = {
+            labels: itemLabels,
+            datasets: [{
+                label: 'Items',
+                data: itemValues,
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)'
+                ],
+                hoverOffset: 10
+            }]
+        };
+
+        const config = {
+            type: 'doughnut',
+            data: itemData,
+            options: {
+                responsive: false,
+                maintainAspectRatio: true,
+            }
+        };
+
+        const ctx = document.getElementById('donut').getContext('2d');
+        new Chart(ctx, config);
+    </script>
+</main>
+
+<footer class="footer">
+    <p>Konstantinos Giasemis, 2026.</p>
+</footer>
+
+</body>
+
+</html>

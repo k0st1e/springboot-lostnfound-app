@@ -1,0 +1,554 @@
+* {
+    /* Got rid of these as my header/footer didnt take all the width */
+    margin: 0;
+    padding: 0;
+    /* This helps layout problems */
+    box-sizing: border-box;
+}
+
+/* ====================================================================================
+
+Nav-bar Related.
+
+==================================================================================== */
+
+/*
+Flex container for navbar.
+`box-shadow` here is for the whole container.
+*/
+.nav-flex-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    list-style-type: none;
+    background-color: #FFD369;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+/*
+`box-shadow` for each child of the container.
+`transition` for the hover thingy.
+*/
+nav li {
+    background-color: #fcc33e;
+    font-size: 105%;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all .3s ease;
+    margin: 2px;
+}
+
+/*
+Make it so that if I hover to the navbar it turns darker yellow.
+Also increase the shadow.
+*/
+nav li:hover {
+    background-color: #efb93d;
+    border-radius: 5px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/*
+Makes the active page in the navbar
+darker yellow so we know where we are.
+*/
+.active_page {
+    background-color: #efb93d;
+    border-radius: 5px;
+}
+
+/*
+Gets rid of nav's text decorations.
+*/
+nav a {
+    text-decoration: none;
+    color: #222831;
+    padding: 10px;
+    display: block;
+}
+
+/*
+Media query for navbar, also matches the 600px of the item cards.
+*/
+@media (max-width: 600px) {
+    .nav-flex-container {
+        flex-flow: column wrap;
+    }
+}
+
+/* ====================================================================================
+
+Reactive photo item gallery that changes from 4 columns to 2 and 1.
+
+==================================================================================== */
+
+/*
+Container for the item photo gallery.
+*/
+.photo-container {
+    column-count: 4;
+    column-gap: 20px;
+    padding: 10px;
+}
+
+.photo-container img {
+    width: 100%;
+    break-inside: avoid;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease;
+}
+
+.photo-container img:hover {
+    transform: translate(0, -3px);
+}
+
+/*
+Media query to make the home item gallery two (2) columns.
+*/
+@media (max-width: 800px) {
+    .photo-container {
+        /* 2 COLUMNS */
+        column-count: 2;
+    }
+}
+
+/*
+Media query to make the home item gallery one (1) column.
+*/
+@media (max-width: 600px) {
+    .photo-container {
+        /* 1 COLUMN */
+        column-count: 1;
+    }
+}
+
+/* ====================================================================================
+
+Lost and found cards for choosing container.
+
+==================================================================================== */
+
+/*
+Flex container for the lost/found cards.
+*/
+.card-flex-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 75vh;
+}
+
+/*
+Borders, shadows and a transition for the lost/found cards.
+*/
+.cards img {
+    border: 5px solid #393E46;
+    border-radius: 15px;
+    /* We make a transition to move it upwards */
+    transition: transform 0.4s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/*
+Bring to life the transition and add some more shadow.
+*/
+.cards img:hover {
+    /* Move it upwards. */
+    transform: translate(0, -5px);
+}
+
+/*
+Query that matches the 600px of navbar for the choosing lost/found cards.
+*/
+@media (max-width: 600px) {
+    .card-flex-container {
+        flex-flow: column wrap;
+        padding-bottom: 40px;
+    }
+}
+
+/* ====================================================================================
+
+Misc: Background Color, iOS safari rubber banding fix and misc styling.
+
+==================================================================================== */
+
+/*
+Background color.
+*/
+body {
+    background-color: #F2EAD3;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/*
+iOS Safari fix for the rubber banding when scroll reaches to an end.
+Content is needed to exist, inset fills the entire screen and z makes sure
+it's behind everything.
+*/
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-color: #F2EAD3;
+    z-index: -1;
+}
+
+/*
+Add p padding, color and font-family.
+*/
+p, li, ul, h1, h2, h3, figcaption {
+    color: #373c42;
+    font-family: Monospaced, sans-serif;
+    padding: 5px;
+    list-style-type: none;
+}
+
+/*
+Center the home page text.
+*/
+.home-content {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+/* ====================================================================================
+
+Footer.
+
+==================================================================================== */
+footer {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #393E46;
+    text-align: center;
+}
+
+.footer p {
+    padding-top: 13px;
+    color: #EEEEEE;
+}
+
+/* ====================================================================================
+
+The following CSS is responsible for the Log-in and Register Form.
+We add some margin/padding and font-size for the input fields.
+Style the button a tad bit.
+
+==================================================================================== */
+
+.login-inputfield {
+    padding: 10px;
+    margin: 5px;
+    border: 2px solid #393E46;
+    background-color: #ffffff;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    font-size: 105%;
+}
+
+.login-inputfield:focus {
+    border-color: #00ADB5;
+}
+
+/* Style the button. */
+.submit-button {
+    background-color: #00ADB5;
+    border: 2px solid #393E46;
+    color: #ffffff;
+    padding: 10px;
+    margin: 5px;
+    align-self: center;
+    border-radius: 8px;
+    transition: all 0.4s ease;
+    font-size: 105%;
+    cursor: pointer;
+}
+
+/* Change to a bit of a darker color. */
+.submit-button:hover {
+    background-color: #008C95;
+}
+
+/* ====================================================================================
+
+Thymeleaf Error Related Messages
+
+==================================================================================== */
+
+.error-notification-area {
+    padding-top: 20px;
+    font-size: 110%;
+    color: #cb4848;
+    font-family: Monospaced, sans-serif;
+}
+
+/* ====================================================================================
+
+Item Submission Form
+
+==================================================================================== */
+
+.submit-button-item {
+    display: inline-block;
+    padding: 12px 24px;
+    margin-left: 5px;
+    margin-right: -5px;
+    font-size: 105%;
+    background-color: #00ADB5;
+    border: 2px solid #393E46;
+    border-radius: 8px;
+    color: #ffffff;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-family: Monospaced, sans-serif;
+    width: auto;
+}
+
+.submit-button-item:hover {
+    background-color: #008C95;
+}
+
+body {
+    font-family: Monospaced, sans-serif;
+}
+
+/* ====================================================================================
+
+Item Details + Messages
+
+==================================================================================== */
+
+.page-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 60px;
+    gap: 40px;
+}
+
+.item-card {
+    width: 600px;
+    padding: 24px;
+    background-color: #f7f6e2;
+    border: 5px solid #393E46;
+    border-radius: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.item-details-image {
+    float: right;
+    width: 120px;
+    margin-top: -20px;
+    border-radius: 10px;
+    border: 3px solid #393E46;
+}
+
+.item-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 6px;
+}
+
+.inputfield {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 2px solid #393E46;
+    border-radius: 8px;
+    background-color: #ffffff;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.inputfield:focus {
+    border-color: #00ADB5;
+}
+
+.inputfield::placeholder {
+    color: #777777;
+}
+
+select.inputfield {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23393E46" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+}
+
+.file-label {
+    display: inline-block;
+    padding: 12px 24px;
+    margin-left: 5px;
+    margin-right: -5px;
+    background-color: #00ADB5;
+    color: #ffffff;
+    border: 2px solid #393E46;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    width: auto;
+}
+
+.file-label:hover {
+    background-color: #008C95;
+}
+
+.file-input {
+    display: none;
+}
+
+/* ====================================================================================
+
+Donut Chart Styling
+
+==================================================================================== */
+
+/*
+Center it and add some top margin.
+*/
+.donut-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+}
+
+/* ====================================================================================
+
+Message Board Styling
+
+==================================================================================== */
+
+.type-msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.input-msg-write {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    align-items: center;
+}
+
+.write-msg {
+    flex-grow: 1;
+    width: auto;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 2px solid #393E46;
+    border-radius: 8px;
+    background-color: #ffffff;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.write-msg:focus {
+    border-color: #00ADB5;
+}
+
+.write-msg::placeholder {
+    color: #777777;
+}
+
+.btn {
+    flex-shrink: 0;
+    width: 80px;
+    padding: 12px 0;
+    font-size: 16px;
+    background-color: #00ADB5;
+    color: #ffffff;
+    border: 2px solid #393E46;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.btn:hover {
+    background-color: #008C95;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* ====================================================================================
+
+Message History Styling
+
+==================================================================================== */
+
+.all-messages {
+    margin: 10px;
+    padding: 10px
+}
+
+.outgoing-message {
+    margin-top: 10px;
+    text-align: right;
+    border-right: 2px solid #00ADB5;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.incoming-message {
+    margin-top: 10px;
+    text-align: left;
+    border-left: 2px solid #00ADB5;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.message-name {
+    font-family: Monospaced, sans-serif;
+    font-weight: bold;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+.message-content {
+    padding-left: 8px;
+    padding-right: 8px;
+    font-family: Monospaced, sans-serif;
+}
+
+/* ====================================================================================
+
+Change the alert button of the navbar to orange when there are unread alerts.
+
+==================================================================================== */
+
+.ugotmail {
+    background-color: #ff912c;
+    font-size: 105%;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all .3s ease;
+    margin: 2px;
+}

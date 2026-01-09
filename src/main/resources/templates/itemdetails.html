@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link th:href="@{/css/stylesheet.css}" rel="stylesheet"/>
+    <link th:href="@{/images/search-rel.png}" rel="icon">
+</head>
+
+<body>
+    <header>
+        <nav id="top">
+            <ul class="nav-flex-container">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/choose">Submit Item</a></li>
+                <li><a href="/dash">Dash Analytics</a></li>
+                <!-- @ModelAttribute("hasUnreadAlerts") from `GlobalAlertDevice` :) -->
+                <li th:classappend="${hasUnreadAlerts} ? ' ugotmail' : ''"><a href="/alerts">Alerts</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <div class="page-layout">
+
+        <!-- Item Details Card -->
+        <div class="item-card">
+            <h2 th:text="${item.getItemname()}"></h2>
+            <img th:src="@{/item/image/{id}(id=${item.itemid})}" alt="" class="item-details-image">
+            <p>
+                <strong>Status:</strong>
+                <span th:text="${item.getItemstatus()}"></span>
+            </p>
+            <p>
+                <strong>Location:</strong>
+                <span th:text="${item.getItemlocation()}"></span>
+            </p>
+            <p>
+                <strong>Contact:</strong>
+                <span th:text="${item.getItemcontact()}"></span>
+            </p>
+            <p>
+                <strong>Time and Date:</strong>
+                <span th:text="${#temporals.format(item.getItemdate(), 'dd-MM-yyyy HH:mm')}"></span>
+            </p>
+            <p>
+                <strong>Submitted by:</strong>
+                <span th:text="${item.getUserEntity().getRealname()}"></span>
+            </p>
+            <p>
+                <strong>Category:</strong>
+                <span th:text="${item.getCategoryEntity().getCategoryname()}"></span>
+            </p>
+            <p>
+                <strong>Description:</strong>
+                <span th:text="${item.getItemdescription()}"></span>
+            </p>
+        </div>
+
+        <!-- Messages Card -->
+        <div class="item-card">
+            <h2>Message Board</h2>
+
+            <form method="post"
+                  th:action="@{/insertmessage/{id}(id=${item.itemid})}"
+                  th:object="${NewMessageDto}">
+                <div class="type-msg">
+                    <div class="input-msg-write">
+                        <div>
+                            <label>
+                                <input type="text" class="write-msg" placeholder="Type a message" name="messagecontent" required/>
+                            </label>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="all-messages">
+
+                <div th:each="message:${allMessages}"
+                     th:attr="class=${(message.getUserEntity().getUsername() == session.loggedinuser.getUsername()) ?
+                     'outgoing-message' : 'incoming-message'}">
+
+                    <p class="message-name" th:text="${message.getUserEntity().getUsername()}"></p>
+                    <p class="message-content" th:text="${message.getMessagecontent()}"></p>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>Konstantinos Giasemis, 2026.</p>
+    </footer>
+
+</body>
+</html>

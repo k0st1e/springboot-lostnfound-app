@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Lost or Found!</title>
+  <link th:href="@{/css/stylesheet.css}" rel="stylesheet"/>
+  <link th:href="@{/images/search-rel.png}" rel="icon">
+</head>
+
+<body>
+<header>
+  <nav id="top">
+    <ul class="nav-flex-container">
+      <li><a href="/home">Home</a></li>
+      <li class="active_page"><a href="/choose">Submit Item</a></li>
+      <li><a href="/dash">Dash Analytics</a></li>
+      <!-- @ModelAttribute("hasUnreadAlerts") from `GlobalAlertDevice` :) -->
+      <li th:classappend="${hasUnreadAlerts} ? ' ugotmail' : ''"><a href="/alerts">Alerts</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <div class="card-flex-container">
+    <a th:href="@{/submititem(status=LOST)}" class="cards" title="Lost Item">
+      <img th:src="@{/images/found-item.png}" alt="A magnifier that signifies that we are looking for a lost item." height="200" width="275">
+    </a>
+    <a th:href="@{/submititem(status=FOUND)}" class="cards" title="Found Item">
+      <img th:src="@{/images/lost-item.png}" alt="An item that appears lost and we have stumbled upon." height="200" width="275">
+    </a>
+  </div>
+</main>
+
+<footer class="footer">
+  <p>Konstantinos Giasemis, 2026.</p>
+</footer>
+</body>
+
+</html>

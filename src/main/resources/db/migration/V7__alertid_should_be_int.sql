@@ -1,0 +1,8 @@
+ALTER TABLE alerts
+    DROP COLUMN alertid;
+
+ALTER TABLE alerts
+    ADD alertid INT AUTO_INCREMENT NOT NULL PRIMARY KEY;
+
+ALTER TABLE alerts
+    MODIFY alertid INT AUTO_INCREMENT;

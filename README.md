@@ -1,12 +1,10 @@
-# Spring Lost n' Found Items Application 
-
-<img src="https://github.com/k0st1e/springboot-lostnfound-app/blob/main/showcase.png" width="800">
+# Spring Lost and Found Items Application 
 
 ## Tools used to develop the application
 
 * Spring MVC with Thymeleaf, Session-based Authentication.
-* [Aurora DX](https://docs.getaurora.dev/dx/aurora-dx-intro): Amazing developer workflow. Rock-stable and feature packed immutable Linux distro.
-* [MySQL](https://hub.docker.com/_/mysql), [phpmyadmin](https://hub.docker.com/_/phpmyadmin) and [lazydocker](https://github.com/jesseduffield/lazydocker) - Docker related.
+* [Aurora DX](https://docs.getaurora.dev/dx/aurora-dx-intro): Amazing developer workflow. Rock-stable and feature packed image-based Linux.
+* [MySQL](https://hub.docker.com/_/mysql), [phpmyadmin](https://hub.docker.com/_/phpmyadmin) and [lazydocker](https://github.com/jesseduffield/lazydocker): Docker related.
 * [JPA Buddy](https://jpa-buddy.com/): Awesome plug-in. Used it to create entities and carry out database migrations with flyway.
   
 ## How to run it?
